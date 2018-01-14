@@ -1,0 +1,63 @@
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+iris = datasets.load_iris()
+
+class HardCodedModel:
+    def predict(data_test):
+        test_results = []
+        i = 0
+        for int in data_test:
+            test_results.append(0)
+        
+        return test_results
+        
+
+class HardCodedClassifier:
+    def fit(data_train, targets_train):
+        blank_model = HardCodedModel
+        return blank_model
+
+def main():
+    
+    # Show the data (the attributes of each instance)
+#    print(iris.data)
+
+    # Show the target values (in numeric format) of each instance
+#    print(iris.target)
+
+    # Show the actual target names that correspond to each number
+#    print(iris.target_names)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        iris.data, iris.target, test_size=0.2, random_state=0)
+
+    classifier = GaussianNB()
+    model = classifier.fit(X_train,y_train)
+
+    targets_predicted = model.predict(X_test)
+#    print("Predicted values: ",targets_predicted)
+#    print("Actual values:    ",y_test)
+    
+    _HardCodedClassifier = HardCodedClassifier
+    
+    model = _HardCodedClassifier.fit(X_train,y_train)
+    targets_predicted = model.predict(X_test)
+#    print("\nNew predicted values: ", targets_predicted)
+#    print("Actual values:          ", y_test)
+    
+    number_correct = 0
+    total = len(targets_predicted)
+    index = 0
+    
+    for int in targets_predicted:
+        if  targets_predicted[index] == y_test[index]:
+            number_correct += 1
+        index += 1
+    
+    percent_accurate = number_correct / total * 100
+        
+    print("{:.1f}% accuracy.".format(percent_accurate))
+    
+if __name__ == "__main__":
+    main()
